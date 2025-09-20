@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubh Agrawal - Programmer & Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f8cff;
+            --secondary: #232946;
+            --accent: #eebbc3;
+            --bg: #f7f7f7;
+            --white: #fff;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--secondary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 2rem 0 1.5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            animation: fadeInDown 1s cubic-bezier(.77,0,.175,1) forwards;
+            opacity: 0;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            animation: fadeInUp 1.2s cubic-bezier(.77,0,.175,1) 0.5s forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: var(--white);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(79,140,255,0.08);
+            padding: 2rem 2.5rem;
+            animation: fadeIn 1.2s cubic-bezier(.77,0,.175,1) 0.8s forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.96);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            box-shadow: 0 4px 16px rgba(79,140,255,0.12);
+            animation: avatarPop 1.2s cubic-bezier(.77,0,.175,1) 1.2s forwards;
+            opacity: 0;
+        }
+        @keyframes avatarPop {
+            from { opacity: 0; transform: scale(0.7);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        .info {
+            flex: 1;
+        }
+        .info h2 {
+            font-size: 1.7rem;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 0.3rem;
+            color: var(--secondary);
+        }
+        .info p {
+            font-size: 1.1rem;
+            color: #444;
+        }
+        .contact {
+            margin-top: 1.2rem;
+            font-size: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: fadeInContact 1.2s cubic-bezier(.77,0,.175,1) 1.5s forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInContact {
+            from { opacity: 0; transform: translateX(-30px);}
+            to { opacity: 1; transform: translateX(0);}
+        }
+        .skills {
+            margin-top: 2rem;
+        }
+        .skills h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+        }
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .skill {
+            background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
+            color: var(--white);
+            padding: 0.7rem 1.3rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(79,140,255,0.09);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s cubic-bezier(.77,0,.175,1);
+        }
+        .skill.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 1rem 0.5rem; }
+            .profile { flex-direction: column; align-items: flex-start;}
+            .avatar { margin-bottom: 1rem;}
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shubh Agrawal</h1>
+        <p>Programmer &amp; Developer</p>
+    </header>
+    <div class="container">
+        <div class="profile">
+            <div class="avatar">SA</div>
+            <div class="info">
+                <h2>Hello, I'm Shubh!</h2>
+                <p>
+                    Passionate about building beautiful and functional web experiences.<br>
+                    I love coding in HTML, CSS, JavaScript, Python, and C++.
+                </p>
+                <div class="contact">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+                    <span>notshubhag@gmail.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="skills">
+            <h3>Skills</h3>
+            <div class="skill-list">
+                <div class="skill">HTML</div>
+                <div class="skill">CSS</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">Python</div>
+                <div class="skill">C++</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Animate skills one by one for buttery effect
+        window.addEventListener('DOMContentLoaded', () => {
+            const skills = document.querySelectorAll('.skill');
+            skills.forEach((skill, i) => {
+                setTimeout(() => {
+                    skill.classList.add('visible');
+                }, 400 + i * 180);
+            });
+        });
+    </script>
+</body>
+</html>
