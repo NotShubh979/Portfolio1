@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shubh Agrawal | Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: black;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: violet;
+      font-weight: bold;
+    }
+
+    header nav a {
+      margin-left: 20px;
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    header nav a:hover {
+      color: violet;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 100px 20px 60px;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    #hero h2 {
+      font-size: 2rem;
+      margin-top: 400px;
+    }
+
+    #skills p {
+      max-width: 600px;
+      color: #aaa;
+    }
+
+    .card {
+      background: #111;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px;
+      width: 250px;
+      box-shadow: 0 0 15px rgba(148, 0, 211, 0.3);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 0 25px rgba(148, 0, 211, 0.6);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: gray;
+      border-top: 1px solid #222;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <h1>Shubh Agrawal</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero with 3D -->
+  <section id="hero">
+    <canvas id="bg"></canvas>
+    <h2>Turning Ideas into Interactive Experiences</h2>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I’m Shubh Agrawal, passionate about blending creativity and code.  
+    I create buttery-smooth 3D interactive experiences with HTML, CSS, JavaScript, and Three.js.</p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <p>Java, Python, C++, JavaScript, Three.js, CSS Animations, and more.</p>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center;">
+      <div class="card">
+        <h3>Project 1</h3>
+        <p>3D interactive project with Three.js</p>
+      </div>
+      <div class="card">
+        <h3>Project 2</h3>
+        <p>Animations with GSAP & CSS</p>
+      </div>
+      <div class="card">
+        <h3>Project 3</h3>
+        <p>Full-stack app with Java/Python backend</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>Email: notshubhop1@gmail.com</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © <span id="year"></span> Shubh Agrawal. All rights reserved.
+  </footer>
+
+  <!-- Three.js + GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ===== 3D Background with Three.js =====
+    const canvas = document.getElementById("bg");
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.position.z = 5;
+
+    const geometry = new THREE.TorusKnotGeometry(1, 0.3, 128, 32);
+    const material = new THREE.MeshStandardMaterial({ color: 0xaa00ff, metalness: 0.7, roughness: 0.2 });
+    const torusKnot = new THREE.Mesh(geometry, material);
+    scene.add(torusKnot);
+
+    const pointLight = new THREE.PointLight(0xffffff, 1);
+    pointLight.position.set(5,5,5);
+    scene.add(pointLight);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      torusKnot.rotation.x += 0.01;
+      torusKnot.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // ===== GSAP Animations =====
+    gsap.utils.toArray("section").forEach((section, i) => {
+      gsap.to(section, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: i * 0.3,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+        }
+      });
+    });
+  </script>
+  <!-- ScrollTrigger Plugin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</body>
+</html>
